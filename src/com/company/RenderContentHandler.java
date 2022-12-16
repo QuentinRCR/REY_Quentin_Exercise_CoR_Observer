@@ -8,5 +8,8 @@ public class RenderContentHandler extends RequestHandler{
         } else if (webRequest.getPath().equals("/dashboard")) {
             System.out.println("Status 200 : Dashboard content here");
         }
+        if(this.successor!=null){ //if it is not the end of the chain
+            this.successor.handleRequest(webRequest);
+        }
     }
 }

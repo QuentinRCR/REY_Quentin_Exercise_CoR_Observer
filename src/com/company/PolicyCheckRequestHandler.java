@@ -7,7 +7,9 @@ public class PolicyCheckRequestHandler extends RequestHandler{
             System.out.println("Status 403 : user is not authorized to access this content");
         }
         else{
-            this.successor.handleRequest(webRequest); //continue the chain
+            if(this.successor!=null){ //if it is not the end of the chain
+                this.successor.handleRequest(webRequest);
+            }
         }
     }
 }
