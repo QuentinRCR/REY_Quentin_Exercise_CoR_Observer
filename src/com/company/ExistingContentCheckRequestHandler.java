@@ -8,14 +8,12 @@ public class ExistingContentCheckRequestHandler extends RequestHandler{
     }
 
     @Override
-    public void handleRequest(WebRequest webRequest) {
-        if(List.of("/home","/dashboard").contains(webRequest.getPath())){
-            if(this.successor!=null){ //if it is not the end of the chain
-                this.successor.handleRequest(webRequest);
-            }
+    public String handleRequest(WebRequest webRequest) {
+        if(List.of("/home","/dashboard").contains(webRequest.getPath()) && this.successor!=null){ //the this.successor!=null is to handle the case when it is not the end of the chain
+            return  this.successor.handleRequest(webRequest);
         }
         else{
-            System.out.println("Status 404 : Page missing");
+            return ("Status 404 : Page missing");
         }
     }
 

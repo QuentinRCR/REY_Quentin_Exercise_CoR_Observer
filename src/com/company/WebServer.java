@@ -9,9 +9,11 @@ public class WebServer implements WebRequestObservable{
     private List<WebRequestObserver> observers = new ArrayList<>();
 
     public String getRequest(WebRequest request) {
-        this.firstSuccesor.handleRequest(request);
+        String response = this.firstSuccesor.handleRequest(request);
+        System.out.println(response);
+
         this.notifyObservers(request);
-        return "";
+        return response;
     }
 
     @Override
